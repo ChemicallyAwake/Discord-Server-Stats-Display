@@ -8,17 +8,21 @@ client.remove_command('help')
 @client.event
 async def on_ready():
     await update_server_count()
-
+    
 async def get_server_count():
-    count = 0
-    for server in client.servers:
+    all = 0
+    online = 0
+    for server in bot.servers:
         for member in server.members:
-            count += 1
-    return count
+            all += 1
+            if str(member.status) == "online":
+                online += 1
+    return all, online
 
 async def  update_server_count():
-    count = "M󠀠󠀠embers_󠀠" + str(await get_server_count())
-    await client.edit_channel(channel=client.get_channel('487361010207031299'), name=count)
+    all, online = await get_server_count()
+    await bot.edit_channel(channel=bot.get_channel('487367521679179787'), name="Server Members: " + str(all))
+    await bot.edit_channel(channel=bot.get_channel('488235513430540310'), name="Online Members: " + str(online))
 
 @client.event
 async def on_member_join(member):
