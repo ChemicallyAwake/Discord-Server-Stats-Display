@@ -10,7 +10,7 @@ client.remove_command('help')
 async def on_ready():
     while True:
         await update_server_count()
-        time.sleep(5)
+        await time.sleep(5)
         
 async def get_server_count():
     all = 0
