@@ -1,16 +1,13 @@
 import discord
 from discord.ext import commands
 import os
-import time
 
 client = commands.Bot(command_prefix="1O9YOdZN027K8P1dyLmQVUG8d7vFWlkLoS0VBVTZcK1u6J1xUEoojFQJRqpidkz9NVF589Rralq3JTus8tiz1ouhD3t1BgxFdkP6hCQ4oN5mptxjcV08pRjFcSyW73JGZNgxov80quCusQBiKuXHqtUafsHDpNIIe8zKFmRDwwkmrWtDFnUdqxqn2cq3IPXHHWWXZcV3")
 client.remove_command('help')
 
 @client.event
 async def on_ready():
-    while True:
-        await update_server_count()
-        time.sleep(10)
+    await update_server_count()
         
 async def get_server_count():
     all = 0
