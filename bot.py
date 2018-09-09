@@ -12,7 +12,7 @@ async def on_ready():
 async def get_server_count():
     all = 0
     online = 0
-    for server in bot.servers:
+    for server in client.servers:
         for member in server.members:
             all += 1
             if str(member.status) == "online":
@@ -21,8 +21,8 @@ async def get_server_count():
 
 async def  update_server_count():
     all, online = await get_server_count()
-    await bot.edit_channel(channel=bot.get_channel('487367521679179787'), name="Server Members: " + str(all))
-    await bot.edit_channel(channel=bot.get_channel('488235513430540310'), name="Online Members: " + str(online))
+    await client.edit_channel(channel=client.get_channel('487367521679179787'), name="Server Members: " + str(all))
+    await client.edit_channel(channel=client.get_channel('488235513430540310'), name="Online Members: " + str(online))
 
 @client.event
 async def on_member_join(member):
