@@ -1,13 +1,16 @@
 import discord
 from discord.ext import commands
 import os
+import time
 
 client = commands.Bot(command_prefix="1O9YOdZN027K8P1dyLmQVUG8d7vFWlkLoS0VBVTZcK1u6J1xUEoojFQJRqpidkz9NVF589Rralq3JTus8tiz1ouhD3t1BgxFdkP6hCQ4oN5mptxjcV08pRjFcSyW73JGZNgxov80quCusQBiKuXHqtUafsHDpNIIe8zKFmRDwwkmrWtDFnUdqxqn2cq3IPXHHWWXZcV3")
 client.remove_command('help')
 
 @client.event
 async def on_ready():
-    await update_server_count()
+    while True:
+        await update_server_count()
+        time.sleep(5)
         
 async def get_server_count():
     all = 0
@@ -15,7 +18,7 @@ async def get_server_count():
     for server in client.servers:
         for member in server.members:
             all += 1
-            if str(member.status) == "online":
+            if str(member.status) != "offline":
                 online += 1
     return all, online
 
