@@ -46,7 +46,6 @@ async def on_member_update(before, after):
 
 @bot.event
 async def on_ready():
-    all,online,robot = await get_server_count()
     await update_count(await get_server_count())
 
 bot.run(os.getenv('TOKEN'))
