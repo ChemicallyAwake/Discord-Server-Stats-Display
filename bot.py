@@ -1,38 +1,52 @@
 import discord
 from discord.ext import commands
 import os
-import time
 
-client = commands.Bot(command_prefix="1O9YOdZN027K8P1dyLmQVUG8d7vFWlkLoS0VBVTZcK1u6J1xUEoojFQJRqpidkz9NVF589Rralq3JTus8tiz1ouhD3t1BgxFdkP6hCQ4oN5mptxjcV08pRjFcSyW73JGZNgxov80quCusQBiKuXHqtUafsHDpNIIe8zKFmRDwwkmrWtDFnUdqxqn2cq3IPXHHWWXZcV3")
-client.remove_command('help')
+bot = commands.Bot(command_prefix='Hello Friend')
+bot.remove_command('help') # remove that help command
 
-@client.event
-async def on_ready():
-    while True:
-        await update_server_count()
-        await time.sleep(5)
-        
 async def get_server_count():
-    all = 0
-    online = 0
-    for server in client.servers:
-        for member in server.members:
-            all += 1
-            if str(member.status) != "offline":
-                online += 1
-    return all, online
+    all=online=robot=0  # set vars to zero
+    for member in bot.get_all_members():
+        all += 1
+        if member.status != discord.Status.offline:
+            online += 1
+        if member.bot:
+            robot += 1
 
-async def  update_server_count():
-    all, online = await get_server_count()
-    await client.edit_channel(channel=client.get_channel('487367521679179787'), name="Server Members: " + str(all))
-    await client.edit_channel(channel=client.get_channel('488235513430540310'), name="Online Members: " + str(online))
+    return all,online,robot
 
-@client.event
+async def update_count(count):
+    all, online, robot = count
+
+    ch_all = bot.get_channel('487367521679179787')
+    name_all = "ALL MEMBERS: " + str(all)
+
+    ch_online = bot.get_channel('488235513430540310')
+    name_online = "ONLINE MEMBERS: " + str(online)
+
+    ch_robot = bot.get_channel('488947654378651659')
+    name_robot = "BOTS: " + str(robot)
+
+    await bot.edit_channel(channel=ch_all, name=name_all)
+    await bot.edit_channel(channel=ch_online, name=name_online)
+    await bot.edit_channel(channel=ch_robot, name=name_robot)
+
+@bot.event
 async def on_member_join(member):
-    await update_server_count()
+    await update_count(await get_server_count())
 
-@client.event
+@bot.event
 async def on_member_remove(member):
-    await update_server_count()
+    await update_count(await get_server_count())
 
-client.run(os.getenv('TOKEN'))
+@bot.event
+async def on_member_update(before, after):
+    await update_count(await get_server_count())
+
+@bot.event
+async def on_ready():
+    all,online,robot = await get_server_count()
+    await update_count(await get_server_count())
+
+bot.run(os.getenv('TOKEN'))
