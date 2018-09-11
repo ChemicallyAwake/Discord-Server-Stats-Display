@@ -18,15 +18,15 @@ async def get_server_count():
 
 async def update_count(count):
     all, online, robot = count
+    
+    ch_all = bot.get_channel('489143518716100629')
+    name_all = "𐌀LL 𐌑EMBERS፡ " + str(all)
 
-    ch_all = bot.get_channel('487367521679179787')
-    name_all = "ALL MEMBERS: " + str(all)
+    ch_online = bot.get_channel('489146748720119818')
+    name_online = "୦NLINE 𐌑EMBERS፡ " + str(online-robot)
 
-    ch_online = bot.get_channel('488235513430540310')
-    name_online = "ONLINE MEMBERS: " + str(online)
-
-    ch_robot = bot.get_channel('488947654378651659')
-    name_robot = "BOTS: " + str(robot)
+    ch_robot = bot.get_channel('489146790482935808')
+    name_robot = "𐌁OTS፡ " + str(robot)
 
     await bot.edit_channel(channel=ch_all, name=name_all)
     await bot.edit_channel(channel=ch_online, name=name_online)
