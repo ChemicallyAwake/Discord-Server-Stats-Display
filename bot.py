@@ -27,7 +27,7 @@ async def update_count(count):
     name_online = await format.convert_string('Online : ') + str(online-robot)
 
     ch_robot = bot.get_channel('489146790482935808')
-    name_robot = await format.convert_string('Bot : ') + str(robot)
+    name_robot = await format.convert_string('Bots : ') + str(robot)
 
     await bot.edit_channel(channel=ch_all, name=name_all)
     await bot.edit_channel(channel=ch_online, name=name_online)
