@@ -13,15 +13,15 @@ async def get_server_count():
         if member.status != discord.Status.offline:
             online += 1
         if member.bot:
-            robot += 1
-
+            robot += 1 
+        
     return all,online,robot
 
 async def update_count(count):
     all, online, robot = count
     
     ch_all = bot.get_channel('489143518716100629')
-    name_all = await format.convert_string('Total : ') + str(all)
+    name_all = await format.convert_string('Total : ') + str(all-robot)
 
     ch_online = bot.get_channel('489146748720119818')
     name_online = await format.convert_string('Online : ') + str(online-robot)
