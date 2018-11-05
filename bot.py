@@ -22,11 +22,20 @@ async def update_count(count):
     all, online, robot = count
     nameTotal, nameOnline, nameBots = "total","online","bots"
     
-    if online == 666:
-        nameTotal = "eɹror "
+    if online == 314:
+        online = "π"
+    elif online == 404:
+        nameOnline = "error"
+        online = "not found"
+    elif online == 666:
+        nameTotal = "eɹror"
         all = 666
         nameOnline = "hail"
         online = "satan"
+    elif online == 1024:
+        online = "1kb"
+    elif total == 9001:
+        total = "over 9000"
         
     await bot.edit_channel(channel=bot.get_channel(os.getenv('TOTAL')),
                            name= await format.convert_string(nameTotal + ' : ') + str(all))
