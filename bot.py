@@ -21,13 +21,6 @@ async def get_server_count():
 async def update_count(count):
     all, online, robot = count
     nameTotal, nameOnline, nameBots = "total","online","bots"
-  
-    
-    
-    if online == 1024:
-        online = "1kb"
-    elif total == 9001:
-        total = "over 9000"
         
     await bot.edit_channel(channel=bot.get_channel(os.getenv('TOTAL')),
                            name= await format.convert_string(nameTotal + ' : ') + str(all))
