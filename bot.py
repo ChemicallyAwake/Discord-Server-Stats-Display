@@ -20,13 +20,20 @@ async def get_server_count():
 
 async def update_count(count):
     all, online, robot = count
+    nameTotal, nameOnline, nameBots = "total","online","bots"
     
+    if online == 666:
+        nameTotal = "eɹror "
+        all = 666
+        nameOnline = "hail"
+        online = "satan"
+        
     await bot.edit_channel(channel=bot.get_channel(os.getenv('TOTAL')),
-                           name= await format.convert_string('Total : ') + str(all))
+                           name= await format.convert_string(nameTotal + ' : ') + str(all))
     await bot.edit_channel(channel=bot.get_channel(os.getenv('ONLINE')),
-                           name=await format.convert_string('Online : ') + str(online))
+                           name=await format.convert_string(nameOnline + ' : ') + str(online))
     await bot.edit_channel(channel=bot.get_channel(os.getenv('BOTS')),
-                           name=await format.convert_string('Bots : ') + str(robot))
+                           name=await format.convert_string(nameBots + ' : ') + str(robot))
 
 @bot.event
 async def on_member_join(member):
