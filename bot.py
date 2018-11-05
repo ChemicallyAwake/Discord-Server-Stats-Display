@@ -23,7 +23,7 @@ async def update_count(count):
     nameTotal, nameOnline, nameBots = "total","online","bots"
     
     if online == 314:
-        online = "π"
+        online = "1"
     elif online == 404:
         nameOnline = "error"
         online = "not found"
