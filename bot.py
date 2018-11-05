@@ -23,12 +23,8 @@ async def update_count(count):
     nameTotal, nameOnline, nameBots = "total","online","bots"
   
     
-    if online == 666:
-        nameTotal = "eɹror"
-        all = 666
-        nameOnline = "hail"
-        online = "satan"
-    elif online == 1024:
+    
+    if online == 1024:
         online = "1kb"
     elif total == 9001:
         total = "over 9000"
