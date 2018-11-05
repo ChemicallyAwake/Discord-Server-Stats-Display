@@ -22,10 +22,8 @@ async def update_count(count):
     all, online, robot = count
     nameTotal, nameOnline, nameBots = "total","online","bots"
   
-    if online == 404:
-        nameOnline = "error"
-        online = "not found"
-    elif online == 666:
+    
+    if online == 666:
         nameTotal = "eɹror"
         all = 666
         nameOnline = "hail"
